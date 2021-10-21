@@ -1,0 +1,110 @@
+body, html {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  font-family: 'Kreon', serif;
+  letter-spacing: 2px;
+  color: #2d3142;
+}
+
+body {
+  background-color: #4f5d75;
+}
+
+.container-outer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 40px;
+  color: #ffffff;
+  font-size: 3em;
+}
+
+.container-inner{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px 0px;
+  width: 500px;
+  height: 500px;
+  border: 4px solid #ef8354;
+  border-radius: 15px;
+}
+
+/* ____top div session length and break length____ */
+
+.break-session-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.break-container-inner {
+  display: flex;
+}
+
+.session-length-container-inner {
+  display: flex;
+}
+
+.time {
+  padding: 10px 10px;
+  font-weight: bolder;
+}
+
+/* clickable buttons */
+.click {
+  color: #ffffff;
+  background-color: #4f5d75;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 25px;
+}
+
+.click:hover {
+  cursor: pointer;
+  background-color: #4f5d75;
+}
+
+.session-container{
+  /* background-color: #4f5d75; */
+  color: #ffffff;
+  font-size: 2em;
+  border: 4px solid #ef8354;
+  border-radius: 15px;
+  width: 50%;
+  padding: 30px 0px;
+}
+
+.session-container > p{
+  padding: 0px;
+  margin: 10px 0px;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  height: 8%;
+}
+
+#start_stop{
+  cursor: pointer;
+}
+
+#reset {
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 30px;
+  color: #ffffff;
+}
