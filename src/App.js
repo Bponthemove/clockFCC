@@ -18,33 +18,35 @@ function App() {
 
   let audio
 
-  function sessionLengthUpHandler() {
-    if (lengthSession < 60) {
-      setLengthSession(lengthSession + 1)
-      setMinutesLeft(minutesLeft + 1)
+  const upDownHandler = (e) => {
+    
+    const { id } = e.target
+    console.log(id);
+    if (id === 'session-increment' || id === 'sessionUp') {
+      if (lengthSession < 60) {
+        setLengthSession(prevLengthSession => prevLengthSession + 1)
+        setMinutesLeft(prevMinutesLeft => prevMinutesLeft + 1)
+      }
+    }
+    if (id === 'session-decrement' || id === 'sessionDown') {
+      if (lengthSession > 1) {
+        setLengthSession(prevLengthSession => prevLengthSession - 1)
+        setMinutesLeft(prevMinutesLeft => prevMinutesLeft - 1)
+      }
+    }
+    if (id === 'break-increment' || id === 'breakUp') {
+      if (breakLength < 60) {
+        setBreakLength(prevBreakLength => prevBreakLength + 1)
+      }
+    } 
+    if (id === 'break-decrement' || id === 'breakDown') {
+      if (breakLength > 1) {
+        setBreakLength(prevBreakLength => prevBreakLength - 1)
+      }
     }
   }
 
-  function sessionLengthDownHandler() {
-    if (lengthSession > 1) {
-      setLengthSession(lengthSession - 1)
-      setMinutesLeft(minutesLeft - 1)
-    }
-  }
-
-  function breakLengthUpHandler() {
-    if (breakLength < 60) {
-      setBreakLength(breakLength + 1)
-    }
-  }
-
-  function breakLengthDownHandler() {
-    if (breakLength > 1) {
-      setBreakLength(breakLength - 1)
-    }
-  }
-
-  function play(e) {
+  const play = (e) => {
     audio = new Audio(document.querySelector('#beep').src)
     //if it is not running than switch running to true, this is the first time timer will run
     if (!running) {
@@ -97,28 +99,24 @@ function App() {
     }, 1000)
   }
 
-  function stopInterval() {
-    console.log(breakRef);
+  const stopInterval = () => {
     clearInterval(timerIdRef.current)
     if (breakRef.current) {
-      console.log(breakRef);
       breakRef.current = false
       play()
     } else {
-      console.log(breakRef);
       breakRef.current = true
       theBreak()
     }
   }
 
-  function pause() {
-    console.log(audio);
+  const pause = () => {
     setTimerOn(!timerOn)
     clearInterval(timerIdRef.current)
     timerIdRef.current = ''
   }
 
-  function theBreak() {
+  const theBreak = () => {
     let time = breakLength * 60 + 1
     timerIdRef.current = setInterval(() => {
       time--
@@ -139,7 +137,7 @@ function App() {
     }, 1000)
   }
 
-  function reset() {
+  const reset = () => {
     audio = new Audio('')
     clearInterval(timerIdRef.current)
     setLengthSession(25)
@@ -157,8 +155,8 @@ function App() {
       <h1>25 + 5 clock</h1>
       <div className='container-inner'>
         <div className='break-session-container'>
-          <BreakLength onclickup={breakLengthUpHandler} onclickdown={breakLengthDownHandler} length={breakLength}/>
-          <SessionLength onclickup={sessionLengthUpHandler} onclickdown={sessionLengthDownHandler} length={lengthSession}/>
+          <BreakLength onclick={upDownHandler} length={breakLength}/>
+          <SessionLength onclick={upDownHandler} length={lengthSession}/>
         </div>
         <Session minutes={minutesLeft} seconds={secondsLeft} length={lengthSession} running={running} breakRef={breakRef}/>
         <Buttons play={play} reset={reset} pause={pause} timerOn={timerOn}/>

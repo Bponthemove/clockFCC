@@ -49,10 +49,12 @@ h1 {
 
 .break-container-inner {
   display: flex;
+  align-items: center;
 }
 
 .session-length-container-inner {
   display: flex;
+  align-items: center;
 }
 
 .time {
@@ -62,6 +64,7 @@ h1 {
 
 /* clickable buttons */
 .click {
+  height: 50%;
   color: #ffffff;
   background-color: #4f5d75;
   border: none;
